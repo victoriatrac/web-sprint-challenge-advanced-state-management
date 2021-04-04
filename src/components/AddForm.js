@@ -1,4 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
+
+import { connect } from 'react-redux'
+
+import { setError, addSmurf } from '../actions/index'
 
 const AddForm = (props) => {
     const [state, setState] = useState({
@@ -6,27 +10,36 @@ const AddForm = (props) => {
         position:"",
         nickname:"",
         description:""
-    });
+    })
 
     const handleChange = e => {
         setState({
             ...state,
             [e.target.name]:e.target.value
-        });
+        })
     }
 
     const handleSubmit = e => {
         e.preventDefault();
         if (state.name === "" || state.position === "" || state.nickname === "") {
-            errorMessage = "Name, position and nickname fields are required.";
+            props.setError("Name, position and nickname fields are required.")
+            console.log(errorMessage)
+        } else {
+            props.addSmurf({
+                name: state.name,
+                position: state.position,
+                nickname: state.nickname,
+                description: state. description
+            })
+            console.log(state)
         }
     }
 
-    const errorMessage = "";
+    const errorMessage = state.errorMessage
 
     return(<section>
         <h2>Add Smurf</h2>
-        <form onSubmit={handleSubmit}>
+        <form>
             <div className="form-group">
                 <label htmlFor="name">Name:</label><br/>
                 <input onChange={handleChange} value={state.name} name="name" id="name" />
@@ -44,14 +57,14 @@ const AddForm = (props) => {
                 <textarea onChange={handleChange} value={state.description} name="description" id="description" />
             </div>
             {
-                errorMessage && <div data-testid="errorAlert" className="alert alert-danger" role="alert">Error: {errorMessage}</div>
+                errorMessage && <div data-testid="errorAlert" className="alert alert-danger" role="alert">Error: {setError()}</div>
             }
-            <button>Submit Smurf</button>
+            <button onClick={handleSubmit}>Submit Smurf</button>
         </form>
-    </section>);
+    </section>)
 }
 
-export default AddForm;
+export default connect(null, { /*errorMessage, */setError, addSmurf })(AddForm)
 
 //Task List:
 //1. Connect the errorMessage, setError and addSmurf actions to the AddForm component.
