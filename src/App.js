@@ -1,4 +1,5 @@
-import React, { Component } from "react"
+// import React, { Component } from "react"
+import React from "react"
 import { connect } from 'react-redux'
 
 import AddForm from './components/AddForm'
@@ -10,10 +11,11 @@ import { fetchSmurfs } from './actions'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import "./App.css"
 
-class App extends Component {
-  render() {
-
+// class App extends Component {
+function App(props) {
+  
     fetchSmurfs()
+
     return (
       <div className="App">
         <Header />
@@ -25,18 +27,20 @@ class App extends Component {
       </div>
     )
   }
-}
+// }
 
 const mapStateToProps = ( state ) => {
   return {
-    name: state.name,
-    nickname: state.nickname,
-    position: state.position,
-    summary: state.summary
+    // name: state.name,
+    // nickname: state.nickname,
+    // position: state.position,
+    // summary: state.summary
+    state,
   }
 }
 
 export default connect(mapStateToProps, { fetchSmurfs })(App)
+// export default connect(mapStateToProps)(App)
 
 //Task List:
 //1. Connect the fetchSmurfs actions to the App component.

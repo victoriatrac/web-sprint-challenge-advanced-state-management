@@ -1,20 +1,20 @@
 import {
-  FETCH_SMURF,
+  LOADING,
   FETCH_SUCCESS,
   FETCH_FAIL,
-  ERROR_MSG,
-  ADD_SMURF
+  // ERROR_MSG,
+  // ADD_SMURF
 } from '../actions'
 
 export const initialState = {
-  // smurfs: [{
-  //   name: '',
-  //   nickname: '',
-  //   position: '',
-  //   summary: '',
-  //   id: Date.now()
-  // }],
-  smurfs: {},
+  smurfs: [{
+    name: '',
+    nickname: '',
+    position: '',
+    summary: '',
+    id: Date.now()
+  }],
+  // smurfs: {},
   isLoading: false,
   errorMsg: ''
 }
@@ -22,7 +22,7 @@ export const initialState = {
 const reducer = ( state = initialState, action ) =>{
   switch(action.type) {
 
-    case(FETCH_SMURF):
+    case(LOADING):
       return ({
         ...state,
         isLoading: true
@@ -41,17 +41,17 @@ const reducer = ( state = initialState, action ) =>{
         isLoading: false
       })
 
-    case(ERROR_MSG):
-      return ({
-        ...state,
-        errorMsg: action.payload
-      })
+    // case(ERROR_MSG):
+    //   return ({
+    //     ...state,
+    //     errorMsg: action.payload
+    //   })
 
-    case(ADD_SMURF):
-      return ({
-        ...state,
-        smurfs: {...action.payload}
-      })
+    // case(ADD_SMURF):
+    //   return ({
+    //     ...state,
+    //     smurfs: {...action.payload}
+    //   })
 
     default:
       return state

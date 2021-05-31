@@ -25,7 +25,7 @@ import { connect } from 'react-redux'
 
 const mapStateToProps = ( state ) => {
     return {
-        SmurfList
+        // SmurfList
     }
   }
   
