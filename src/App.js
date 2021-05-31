@@ -33,15 +33,14 @@ function App(props) {
 
 const mapStateToProps = ( state ) => {
   return {
-    name: state.name,
-    nickname: state.nickname,
-    position: state.position,
-    summary: state.summary
+    // name: state.name,
+    // nickname: state.nickname,
+    // position: state.position,
+    // description: state.description
   }
 }
 
 export default connect(mapStateToProps, { fetchSmurfs })(App)
-// export default connect(mapStateToProps)(App)
 
 //Task List:
 //1. Connect the fetchSmurfs actions to the App component.

@@ -9,7 +9,8 @@ export const ADD_SMURF = 'ADD_SMURF'
 export const fetchSmurfs = () => (dispatch) => {
   dispatch({ type: LOADING })
 
-  axios.get('http://localhost:3333/smurfs')
+  axios
+    .get('http://localhost:3333/smurfs')
     .then(r => {
       dispatch({
         type: FETCH_SUCCESS,
@@ -24,11 +25,31 @@ export const fetchSmurfs = () => (dispatch) => {
     })
 }
 
-export const addSmurf = (newSmurf) => {
-  return ({
-    type: ADD_SMURF,
-    payload: newSmurf
-  })
+export const addSmurf = (newSmurf) => (dispatch) => {
+  dispatch({ type: LOADING })
+
+  axios
+    .post('http://localhost:3333/smurfs', newSmurf)
+    .then(r => {
+      console.log('actions: axios.post: r.data: ', r.data)
+      const refactoredSmurf = {
+        id: r.data.id,
+        name: r.data.name,
+        position: r.data.position,
+        nickname: r.data.nickname,
+        description: r.data.description
+      }
+      dispatch({
+        type: ADD_SMURF,
+        payload: refactoredSmurf
+      })
+    })
+    .catch(e => {
+      dispatch({
+        type: ERROR_MSG,
+        payload: e
+      })
+    })
 }
 
 export const setError = (message) => {

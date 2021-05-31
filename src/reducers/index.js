@@ -7,13 +7,6 @@ import {
 } from '../actions'
 
 export const initialState = {
-  // smurfs: [{
-  //   name: '',
-  //   nickname: '',
-  //   position: '',
-  //   summary: '',
-  //   id: Date.now()
-  // }],
   smurfs: [],
   isLoading: false,
   errorMsg: ''
@@ -32,7 +25,7 @@ const reducer = ( state = initialState, action ) =>{
       return ({
         ...state,
         isLoading: false,
-        smurfs: [action.payload]
+        smurfs: action.payload
       })
 
     case(FETCH_FAIL):
@@ -50,7 +43,8 @@ const reducer = ( state = initialState, action ) =>{
     case(ADD_SMURF):
       return ({
         ...state,
-        smurfs: [action.payload]
+        loading: false,
+        smurfs: [action.payload, ...state.smurfs]
       })
 
     default:

@@ -13,15 +13,18 @@ import { connect } from 'react-redux'
   }
 
   return(<div className="listContainer">
-    {console.log('smurfList: return: props.smurfs: ', props.smurfs)}
     {props.smurfs.map((smurf) => <Smurf smurf={smurf} key={smurf.id}/>)}
-  </div>);
+  </div>)
 }
 
 const mapStateToProps = ( state ) => {
     return {
         smurfs: state.smurfs,
-        isLoading: state.isLoading
+        // isLoading: state.isLoading,
+        // name: state.name,
+        // position: state.position,
+        // nickname: state.nickname,
+        // id: state.id
     }
   }
   
