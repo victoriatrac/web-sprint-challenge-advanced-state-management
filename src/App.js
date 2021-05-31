@@ -1,5 +1,5 @@
 // import React, { Component } from "react"
-import React from "react"
+import React, { useEffect } from "react"
 import { connect } from 'react-redux'
 
 import AddForm from './components/AddForm'
@@ -13,29 +13,30 @@ import "./App.css"
 
 // class App extends Component {
 function App(props) {
-  
-    fetchSmurfs()
 
-    return (
-      <div className="App">
-        <Header />
+  useEffect(() => {
+    props.fetchSmurfs()
+  }, [])
 
-        <main>
-          <SmurfList/>
-          <AddForm/>
-        </main>
-      </div>
-    )
-  }
+  return (
+    <div className="App">
+      <Header />
+
+      <main>
+        <SmurfList/>
+        <AddForm/>
+      </main>
+    </div>
+  )
+}
 // }
 
 const mapStateToProps = ( state ) => {
   return {
-    // name: state.name,
-    // nickname: state.nickname,
-    // position: state.position,
-    // summary: state.summary
-    state,
+    name: state.name,
+    nickname: state.nickname,
+    position: state.position,
+    summary: state.summary
   }
 }
 

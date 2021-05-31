@@ -2,19 +2,19 @@ import {
   LOADING,
   FETCH_SUCCESS,
   FETCH_FAIL,
-  // ERROR_MSG,
-  // ADD_SMURF
+  ERROR_MSG,
+  ADD_SMURF
 } from '../actions'
 
 export const initialState = {
-  smurfs: [{
-    name: '',
-    nickname: '',
-    position: '',
-    summary: '',
-    id: Date.now()
-  }],
-  // smurfs: {},
+  // smurfs: [{
+  //   name: '',
+  //   nickname: '',
+  //   position: '',
+  //   summary: '',
+  //   id: Date.now()
+  // }],
+  smurfs: [],
   isLoading: false,
   errorMsg: ''
 }
@@ -32,7 +32,7 @@ const reducer = ( state = initialState, action ) =>{
       return ({
         ...state,
         isLoading: false,
-        smurfs: {...action.payload}
+        smurfs: [action.payload]
       })
 
     case(FETCH_FAIL):
@@ -41,17 +41,17 @@ const reducer = ( state = initialState, action ) =>{
         isLoading: false
       })
 
-    // case(ERROR_MSG):
-    //   return ({
-    //     ...state,
-    //     errorMsg: action.payload
-    //   })
+    case(ERROR_MSG):
+      return ({
+        ...state,
+        errorMsg: action.payload
+      })
 
-    // case(ADD_SMURF):
-    //   return ({
-    //     ...state,
-    //     smurfs: {...action.payload}
-    //   })
+    case(ADD_SMURF):
+      return ({
+        ...state,
+        smurfs: [action.payload]
+      })
 
     default:
       return state
